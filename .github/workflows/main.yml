@@ -24,7 +24,7 @@ jobs:
         run: mvn -B package -DskipTests --file ./pom.xml
       - name: Deploy EC2
         run: |
-             echo "${{secrets.KEY_EC2}}" > private_key && chmod 777 private_key
+             echo "${{secrets.KEY_EC2}}" > private_key && chmod 400 private_key
              ssh -o StrictHostKeyChecking=no -i "private_key" ubuntu@ec2-52-0-211-237.compute-1.amazonaws.com "
                  cd /home/ubuntu/devops_ec2 &&
                  git pull origin main &&
